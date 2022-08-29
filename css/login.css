@@ -35,3 +35,20 @@
     padding: 15px;
     width: 100%;
 }
+
+.submit{
+    background-color: #ee665c;
+    padding: 15px;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    max-width: 335px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.submit:disabled{
+    background-color: #eee;
+    color: #aaa;
+    cursor: auto;
+}
