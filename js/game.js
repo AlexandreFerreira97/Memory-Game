@@ -19,11 +19,40 @@ const createElement = (tag,className) => {
     return element;
 }
 
+const checkEndGame = () => {
+    const disabledCards = document.querySelectorAll('.disabled-card');
+
+    if(disabledCards.length === 20){
+        alert('Parabéns, você venceu!');
+    }
+}
+
 let firstCard = '';
 let secondCard = '';
 
 const checkCards = () => {
+    const fisrtCharacter = firstCard.getAttribute('data-character');
+    const secondCharacter = secondCard.getAttribute('data-character');
 
+    if(fisrtCharacter === secondCharacter){
+        firstCard.firstChild.classList.add('disabled-card');
+        secondCard.firstChild.classList.add('disabled-card');
+
+        firstCard = '';
+        secondCard  = '';
+
+        checkEndGame();
+    }
+    else{
+
+        setTimeout(()=>{
+            firstCard.classList.remove('reveal-card');
+            secondCard.classList.remove('reveal-card');
+
+            firstCard = '';
+            secondCard  = '';
+        },500)
+    }
 }
 
 const revealCard = ({target}) => {
@@ -41,6 +70,8 @@ const revealCard = ({target}) => {
     {
         target.parentNode.classList.add('reveal-card');
         secondCard = target.parentNode;
+
+        checkCards();
     }
 }
 
