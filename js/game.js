@@ -1,4 +1,6 @@
 const grid = document.querySelector('.grid');
+const spanPlayer = document.querySelector('.player');
+const timer = document.querySelector('.timer');
 
 const characters = [
     'chidori',
@@ -23,7 +25,8 @@ const checkEndGame = () => {
     const disabledCards = document.querySelectorAll('.disabled-card');
 
     if(disabledCards.length === 20){
-        alert('Parabéns, você venceu!');
+        alert(`Parabéns, ${spanPlayer.innerHTML}. Seu tempo foi: ${timer.innerHTML}`);
+        clearInterval(this.loop);
     }
 }
 
@@ -103,4 +106,20 @@ const loadGame = () => {
     })
 }
 
-loadGame();
+const timerStart = () => {
+    this.loop = setInterval(() => {
+
+        currentTime = +timer.innerHTML;
+        timer.innerHTML = currentTime + 1;
+
+    },1000 );
+} 
+
+window.onload = () => {
+
+    const playerName = localStorage.getItem('player');
+
+    spanPlayer.innerHTML = playerName;
+    timerStart();
+    loadGame();    
+}
